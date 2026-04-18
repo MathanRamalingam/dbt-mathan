@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: raw
+    description: Source data from the raw schema in fabric database
+    database: dwh_dbttest
+    schema: bridgegold
+    tables:
+      - name: customers
+        description: Raw customer data
+      - name: orders
+        description: Raw orders data
+
+  - name: bridgeflow_gold
+    description: Source data from bridgeflow gold layer
+    database: bridgeflow_gold
+    schema: gold_layer
+    tables:
+      - name: dim_source
+        description: Source dimension table from gold layer
+        loaded_at_field: created_ts
+        freshness:
+          warn_after: {count: 1, period: day}
+          error_after: {count: 2, period: day}
+        columns:
+          - name: sourceId
+            tests:
+              - not_null
+              - greater_than_zero
