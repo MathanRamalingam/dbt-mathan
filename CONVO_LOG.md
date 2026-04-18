@@ -204,3 +204,20 @@ Format:
 
 - Q: I have new dbt project for MS Fabric. Plan: silver layer (source) → transform → gold layer (target). How to bring dbt into Fabric? Better to create outside and import, or create in Fabric?
 - A: Best practice: Create and test locally outside (like we're doing now), keep in Git, then deploy to Fabric using Fabric Git integration or scheduled jobs. This gives you version control, testing, and safe deployment. Not recommended to build directly in Fabric UI.
+### 2026-04-18 17:53
+- Task: Initialize Git repository and publish project to GitHub
+- Files changed:
+  - .git metadata
+- Command(s) run:
+  - git init
+  - git branch -M main
+  - git remote add origin https://github.com/MathanRamalingam/dbt-mathan.git
+  - git add .
+  - git commit -m "Initial dbt project setup"
+  - git push -u origin main
+- Result:
+  - Local repository initialized
+  - Initial commit created
+  - Project pushed successfully to GitHub repo dbt-mathan on branch main
+- Next action:
+  - Continue normal development with Git tracking enabled
